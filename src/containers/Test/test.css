@@ -1,0 +1,34 @@
+html {
+    background-color: #efefe7;
+    font-size: 4px;
+}
+
+body {
+    font-size: 5rem;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    height: 100%;
+}
+
+.content {
+    margin: auto;
+    justify-content: space-between;
+}
+
+button {
+    outline: none;
+    padding: 3px 15px;
+    border: none;
+    background-color: #31c531;
+    display: inline-flex;
+    color: #fff;
+    font-size: 5rem;
+    cursor: pointer;
+}

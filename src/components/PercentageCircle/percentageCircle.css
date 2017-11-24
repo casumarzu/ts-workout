@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+.percentage_circle {
+    width: 48px;
+    height: 48px;
+}
+
+.flex-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.single-chart {
+    width: 33%;
+    justify-content: space-around;
+}
+
+.circular-chart {
+    display: flex;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #dcd8d8;
+    stroke-width: 0.25rem;
+}
+
+.circle {
+    fill: none;
+    stroke-width: 0.25rem;
+    stroke-linecap: round;
+    transition: all 0.5s ease;
+    /*animation: progress 1s ease-out forwards;*/
+}
+
+/*@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}*/
+
+.circular-chart.red .circle {
+    stroke: red;
+}
+
+.circular-chart.orange .circle {
+    stroke: orange;
+}
+
+.circular-chart.green .circle {
+    stroke: green;
+}
+
+.percentage {
+    fill: #666;
+    font-family: Roboto;
+    font-size: 0.5em;
+    text-anchor: middle;
+    transition: all 0.5s ease;
+}
+
+.circular-chart.red .percentage {
+    fill: red;
+}
+
+.circular-chart.orange .percentage {
+    fill: orange;
+}
+
+.circular-chart.green .percentage {
+    fill: green;
+}
