@@ -6,10 +6,14 @@ import * as s from './test.css';
 import {Preloader} from '../../components/Preloader';
 import {PercentageCircle} from '../../components/PercentageCircle';
 
+import {getGradientSteps, getMarginGradient} from './utils';
+
 const getRandom = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
 };
 
+let up = true;
+let percent = 0;
 
 @testDecorator()
 @loggerDecorator()
@@ -20,28 +24,32 @@ export class Test extends React.Component<Test.Props, Test.State> {
         super(props);
         this.state = {
             name: 'Andrey',
-            percent: 70
+            percent: 0
         }
     }
 
     componentDidMount() {
-        return false;
         this.interval = setInterval(() => {
-            const percent = getRandom(-150, 150);
             this.setState({percent});
-            console.log({percent});
-        }, 500);
+            if (percent >= 100) up = false;
+            if (percent === 0) up = true;
+            if (up) percent++;
+            if (!up) percent--;
+        }, 100);
     }
 
     @autobind
     onClick() {
         const text = `Hye ${this.state.name}!`;
         const name = 'Hello';
+        const percent = getRandom(-1, 101);
+        this.setState({percent});
         this.props.log({name, text});
     }
     @testMethod
     render() {
         const {percent} = this.state;
+        
         return (
             <div className={s.wrapper}>
                 <Preloader percent={45} />

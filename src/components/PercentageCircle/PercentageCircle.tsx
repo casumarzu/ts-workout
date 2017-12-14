@@ -1,6 +1,7 @@
 import * as React from "react";
 import {cond} from "ramda";
 import * as s from './percentageCircle.css';
+import {getColor} from './utils';
 
 const getClasses = (str: string) => {
     return str
@@ -10,11 +11,11 @@ const getClasses = (str: string) => {
         }, '');
 }
 
-const getColor = cond([
-    [percent => percent <= 40, () => 'red'],
-    [percent => percent > 40 && percent < 60, () => 'orange'],
-    [percent => percent >= 60, () => 'green']
-]);
+// const getColor = cond([
+//     [percent => percent <= 40, () => 'red'],
+//     [percent => percent > 40 && percent < 60, () => 'orange'],
+//     [percent => percent >= 60, () => 'green']
+// ]);
 
 export class PercentageCircle extends React.Component<props, any> {
     constructor(props) {
@@ -22,7 +23,7 @@ export class PercentageCircle extends React.Component<props, any> {
     }
 
     get color() {
-        return getColor(this.props.percent);
+        return getColor(['#28c850', '#ffe100', '#ff5555'], this.props.percent);
     }
 
     render() {
@@ -30,7 +31,7 @@ export class PercentageCircle extends React.Component<props, any> {
         const root = s.percentage_circle;
         return (
             <div className={root}>
-                <svg viewBox="0 0 36 36" className={getClasses(`circular-chart ${this.color}`)}>
+                <svg viewBox="0 0 36 36" className={getClasses(`circular-chart`)}>
                     <path className={s["circle-bg"]}
                         d={`
                             M18 2.0845
@@ -41,6 +42,7 @@ export class PercentageCircle extends React.Component<props, any> {
                    {
                        percent && <path className={s["circle"]}
                             strokeDasharray={`${Math.abs(percent)}, 100`}
+                            stroke={this.color}
                             d={`
                                 M18 2.0845
                                 a 15.9155 15.9155 0 0 1 0 31.831
